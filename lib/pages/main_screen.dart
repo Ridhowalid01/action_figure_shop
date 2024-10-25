@@ -1,9 +1,17 @@
+import 'package:action_figure_shop/pages/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:action_figure_shop/models/product_list.dart';
 import 'package:action_figure_shop/icons/status_badge.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  bool isGridView = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +37,13 @@ class MainScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16, right: 10, bottom: 8),
               child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.grid_view_outlined,
+                  onPressed: () {
+                    setState(() {
+                      isGridView = !isGridView;
+                    });
+                  },
+                  icon: Icon(
+                    isGridView ? Icons.list : Icons.grid_view_outlined,
                     color: Colors.black,
                     size: 32,
                   )),
@@ -41,8 +53,9 @@ class MainScreen extends StatelessWidget {
         body: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth <= 600) {
-            // return const ProductGridView(gridCount: 2);
-            return const ProductListView();
+            return isGridView
+                ? const ProductGridView(gridCount: 2)
+                : const ProductListView();
           } else if (constraints.maxWidth <= 800) {
             return const ProductGridView(
               gridCount: 3,
@@ -76,7 +89,11 @@ class ProductListView extends StatelessWidget {
           itemBuilder: (context, index) {
             final Product product = productList[index];
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return DetailScreen();
+                }));
+              },
               child: Card(
                 color: Colors.white,
                 elevation: 1,
@@ -180,7 +197,11 @@ class ProductGridView extends StatelessWidget {
         childAspectRatio: 0.7,
         children: productList.map((product) {
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return DetailScreen();
+              }));
+            },
             child: Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

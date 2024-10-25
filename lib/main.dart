@@ -1,3 +1,4 @@
+import 'package:action_figure_shop/pages/detail_screen.dart';
 import 'package:action_figure_shop/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Action Figure Shop',
       theme: ThemeData(),
       home: MainScreen(),
+      // home: DetailScreen(),
     );
   }
 }
