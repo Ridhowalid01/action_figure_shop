@@ -2,6 +2,7 @@ import 'package:action_figure_shop/pages/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:action_figure_shop/models/product_list.dart';
 import 'package:action_figure_shop/icons/status_badge.dart';
+import 'package:action_figure_shop/utils/dimensions.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -15,19 +16,22 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // print("Current height is "+ MediaQuery.of(context).size.height.toString());
+    // print("Current height is "+ MediaQuery.of(context).size.width.toString());
+    // print(Dimensions.height10);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
-          toolbarHeight: 80,
-          title: const Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 10),
+          toolbarHeight: Dimensions.toolbarHeight60,
+          title: Padding(
+            padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
             child: Text(
               // 'Explore ${MediaQuery.of(context).size.width}',
               "Explore",
               style: TextStyle(
-                  fontSize: 32,
+                  fontSize: Dimensions.font26,
                   fontWeight: FontWeight.bold,
                   color: Colors.black),
             ),
@@ -35,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
           centerTitle: true,
           actions: [
             Padding(
-              padding: const EdgeInsets.only(top: 16, right: 10, bottom: 8),
+              padding: EdgeInsets.only(top: Dimensions.height16, right: Dimensions.width10, bottom: Dimensions.height8),
               child: IconButton(
                   onPressed: () {
                     setState(() {
@@ -45,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
                   icon: Icon(
                     isGridView ? Icons.list : Icons.grid_view_outlined,
                     color: Colors.black,
-                    size: 32,
+                    size: Dimensions.iconSize32,
                   )),
             ),
           ],
@@ -83,7 +87,7 @@ class ProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height20),
       child: ListView.builder(
           itemCount: productList.length,
           itemBuilder: (context, index) {
@@ -91,7 +95,7 @@ class ProductListView extends StatelessWidget {
             return InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return DetailScreen();
+                  return DetailScreen(product: product,);
                 }));
               },
               child: Card(
@@ -103,11 +107,11 @@ class ProductListView extends StatelessWidget {
                     Expanded(
                         flex: 1,
                         child: Padding(
-                          padding: const EdgeInsets.all(5),
+                          padding: EdgeInsets.all(Dimensions.height5),
                           child: Hero(
                               tag: "thumbnail-${product.id}",
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(Dimensions.radius10),
                                 child: AspectRatio(
                                   aspectRatio: 1,
                                   child: Image.asset(
@@ -121,32 +125,32 @@ class ProductListView extends StatelessWidget {
                     Expanded(
                         flex: 2,
                         child: Padding(
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all(Dimensions.height8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
                                 product.name,
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                                    fontSize: Dimensions.font20,
                                     color: Colors.black),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                               ),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: Dimensions.height10,
                               ),
                               Text(
                                 'IDR ${product.price}',
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: Dimensions.font18, fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                               ),
-                              const SizedBox(
-                                height: 10,
+                              SizedBox(
+                                height: Dimensions.height10,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -155,14 +159,15 @@ class ProductListView extends StatelessWidget {
                                   StatusBadge(status: product.status),
                                   Row(
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         Icons.star,
                                         color: Colors.yellow,
+                                        size: Dimensions.iconSize20,
                                       ),
                                       Text(
                                         product.rating.toStringAsFixed(1),
-                                        style: const TextStyle(
-                                          fontSize: 14,
+                                        style: TextStyle(
+                                          fontSize: Dimensions.font14,
                                         ),
                                       )
                                     ],
@@ -189,17 +194,17 @@ class ProductGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(Dimensions.height8),
       child: GridView.count(
         crossAxisCount: gridCount,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 0.7,
+        crossAxisSpacing: Dimensions.height12,
+        mainAxisSpacing: Dimensions.width12,
+        childAspectRatio: 0.65,
         children: productList.map((product) {
           return InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return DetailScreen();
+                return DetailScreen(product: product,);
               }));
             },
             child: Card(
@@ -209,62 +214,66 @@ class ProductGridView extends StatelessWidget {
                   Expanded(
                       child: Stack(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: AspectRatio(
-                          aspectRatio: 1,
-                          child: Image.asset(
-                            product.imageThumbnail,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                      Hero(
+                          tag: "thumbnail-${product.id}",
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(Dimensions.radius10),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Image.asset(
+                                product.imageThumbnail,
+                                fit: BoxFit.cover,
+                                alignment: Alignment.center,
+                              ),
+                            ),
+                          )),
                       Padding(
-                        padding: const EdgeInsets.all(3.0),
+                        padding: EdgeInsets.all(Dimensions.height3),
                         child: SizedBox(
                             child: StatusBadge(
                           status: product.status,
-                          minWidthBox: 80,
-                          maxWidthBox: 120,
-                          statusFontSize: 12,
-                          horizontalPadding: 6,
-                          verticalPadding: 2,
+                          minWidthBox: Dimensions.width80,
+                          maxWidthBox: Dimensions.width120,
+                          statusFontSize: Dimensions.font12,
+                          horizontalPadding: Dimensions.width6,
+                          verticalPadding: Dimensions.height2,
                         )),
                       )
                     ],
                   )),
                   Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: EdgeInsets.all(Dimensions.height8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
                           product.name,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: Dimensions.font20),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ),
-                        const SizedBox(
-                          height: 10,
+                        SizedBox(
+                          height: Dimensions.height10,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'IDR ${product.price}',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                                fontSize: Dimensions.font18,
                               ),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
                             Row(
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.star,
                                   color: Colors.yellow,
+                                  size: Dimensions.iconSize20,
                                 ),
                                 Text(product.rating.toStringAsFixed(1))
                               ],

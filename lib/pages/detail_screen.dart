@@ -1,9 +1,13 @@
 import 'package:action_figure_shop/icons/status_badge.dart';
+import 'package:action_figure_shop/models/product_list.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:action_figure_shop/utils/dimensions.dart';
 
 class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+  const DetailScreen({super.key, required this.product});
+
+  final Product product;
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -39,121 +43,254 @@ class _DetailScreenState extends State<DetailScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        toolbarHeight: 80,
-        title: const Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 10),
+        toolbarHeight: Dimensions.toolbarHeight60,
+        title: Padding(
+          padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
           child: Text(
             // 'Explore ${MediaQuery.of(context).size.width}',
             "Details",
             style: TextStyle(
-                fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: Dimensions.font26, fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(top: 16, right: 10, bottom: 8),
+            padding: EdgeInsets.only(top:Dimensions.height16 , right: Dimensions.width10, bottom: Dimensions.height8),
             child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isFavourite = !isFavourite;
-                  });
-                },
+                onPressed: () {},
                 icon: Icon(
-                  isFavourite ? Icons.favorite_outlined : Icons.favorite_outline,
+                  Icons.shopping_cart_outlined,
                   color: Colors.black,
-                  size: 32,
+                  size: Dimensions.iconSize32,
                 )),
           ),
         ],
         leading: Padding(
-          padding: const EdgeInsets.only(top: 16, left: 10, bottom: 8),
+          padding: EdgeInsets.only(top: Dimensions.height16, left: Dimensions.width10, bottom: Dimensions.height8),
           child: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back,
                 color: Colors.black,
-                size: 32,
+                size: Dimensions.iconSize32,
               )),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(Dimensions.height10),
         child: Column(
           children: [
             Expanded(
                 child: PageView.builder(
-              itemCount: 5,
+              itemCount: widget.product.imageUrls.length,
               controller: _pageController,
               itemBuilder: (context, index) {
                 return ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    "images/elaina-wedding.webp",
-                    fit: BoxFit.contain,
+                  borderRadius: BorderRadius.circular(Dimensions.radius10),
+                  child: index==0
+                  ? Hero(
+                    tag: "thumbnail-${widget.product.id}",
+                    child: Image.network(
+                      widget.product.imageUrls[index],
+                      fit: BoxFit.cover,
+                      // errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                      //   return Icon(
+                      //       Icons.error,
+                      //     size: Dimensions.iconSize32,
+                      //   ); // tampilkan ikon error atau widget lainnya
+                      // },
+                    ),
+                  ) : Image.network(
+                    widget.product.imageUrls[index],
+                    fit: BoxFit.cover,
+                    // errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                    //   return Icon(
+                    //       Icons.error,
+                    //     size: Dimensions.iconSize32,
+                    //   ); // tampilkan ikon error atau widget lainnya
+                    // },
                   ),
                 );
               },
             )),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: Dimensions.height10,
             ),
             DotsIndicator(
-              dotsCount: 5,
+              dotsCount: widget.product.imageUrls.length,
               position: _currentPage,
               decorator: DotsDecorator(
-                activeColor: Colors.blueAccent,
-                color: Colors.black,
-                size: const Size.square(9.0),
-                activeSize: const Size(18.0, 9.0),
+                activeColor: Colors.black,
+                color: Colors.white,
+                size: Size.square(Dimensions.height8),
+                activeSize: Size(Dimensions.width16, Dimensions.height8),
+                shape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Colors.black, width: 1.5),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5)),
                 activeShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0)),
+                    side: const BorderSide(color: Colors.black, width: 1.5),
+                    borderRadius: BorderRadius.circular(Dimensions.radius5)),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            // const SizedBox(
+            //   height: 10,
+            // ),
             Expanded(
-                child: Container(
-                  child: Row(
+                child: Padding(
+              padding:
+                  EdgeInsets.all(Dimensions.height10),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        flex: 2,
+                          flex: 3,
                           child: Column(
                             children: [
                               Text(
-                                'Nama Produk wkwkwk',
+                                widget.product.name,
                                 style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: Dimensions.font20,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 overflow: TextOverflow.ellipsis,
-                                maxLines: 2,
+                                maxLines: 3,
+                              ),
+                              SizedBox(
+                                height: Dimensions.height10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow,
+                                        size: Dimensions.font20,
+                                      ),
+                                      Text(widget.product.rating.toStringAsFixed(1)),
+                                      SizedBox(
+                                        width: Dimensions.width10,
+                                      ),
+                                      const Text("|"),
+                                      SizedBox(
+                                        width: Dimensions.width10,
+                                      ),
+                                      Text("${widget.product.totalReviews} Reviews")
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.shopping_cart_outlined,
+                                        size: Dimensions.iconSize20,
+                                      ),
+                                      SizedBox(
+                                        width: Dimensions.width10,
+                                      ),
+                                      Text("${widget.product.totalSold} Sold")
+                                    ],
+                                  )
+                                ],
                               )
                             ],
-                          )
-                      ),
-                      const SizedBox(
-                        width: 5,
+                          )),
+                      SizedBox(
+                        width: Dimensions.width5,
                       ),
                       Expanded(
-                        flex: 1,
+                          flex: 1,
                           child: Column(
                             // mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SizedBox(
-                                child: StatusBadge(status: "Ready"),
+                                child: StatusBadge(
+                                  status: widget.product.status,
+                                  minWidthBox: Dimensions.width80,
+                                  maxWidthBox: Dimensions.width120,
+                                  statusFontSize: Dimensions.font12,
+                                  horizontalPadding: Dimensions.width6,
+                                  verticalPadding: Dimensions.height2,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isFavourite = !isFavourite;
+                                  });
+                                },
+                                icon: Icon(
+                                  isFavourite
+                                      ? Icons.favorite_outlined
+                                      : Icons.favorite_outline,
+                                  size: Dimensions.iconSize24,
+                                ),
                               )
                             ],
-                          )
-                      )
+                          ))
                     ],
                   ),
-                )
-            )
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(Dimensions.height10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Description :",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: Dimensions.font20),
+                        ),
+                        SizedBox(
+                          height: Dimensions.height10,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              " • Characters : ",
+                              style: TextStyle(fontSize: Dimensions.font14),
+                            ),
+                            Text(
+                              widget.product.nameCharacter,
+                              style: TextStyle(
+                                  fontSize: Dimensions.font14, fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: Dimensions.height5,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              " • Series : ",
+                              style: TextStyle(fontSize: Dimensions.font14),
+                            ),
+                            Flexible(
+                                child: Text(
+                                  widget.product.nameSeries,
+                                  style: TextStyle(
+                                      fontSize: Dimensions.font14, fontWeight: FontWeight.bold),
+                                )
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ))
           ],
         ),
       ),

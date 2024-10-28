@@ -82,8 +82,8 @@ var productList = [
     ],
     nameCharacter: "Elaina / Mileina Cerestria",
     nameSeries: "Majo no Tabitabi",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 856,
+    totalSold: 345,
   ),
 
   // Alya
@@ -101,9 +101,9 @@ var productList = [
       "https://cdn.kyou.id/items/324062-premium-chokonose-figure-alya-alisa-mikhailovna-kujou-pajamas-ver-alya-sometimes-hides-her-feelings-in-russian-tokidoki-bosotto-russia-go-de-dereru-tonari-no-alya-san-14cm.jpg.webp",
     ],
     nameCharacter: "Alisa Mikhailovna Kujou",
-    nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alyas-san",
-    totalReviews: 123,
-    totalSold: 213,
+    nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alya-san",
+    totalReviews: 256,
+    totalSold: 457,
   ),
   Product(
     id: 5,
@@ -116,9 +116,9 @@ var productList = [
       "https://cdn.kyou.id/items/340384-alya-sometimes-hides-her-feelings-in-russian-alya-big-acrylic-stand-with-parts.jpg.webp"
     ],
     nameCharacter: "Alisa Mikhailovna Kujou",
-    nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alyas-san",
-    totalReviews: 123,
-    totalSold: 213,
+    nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alya-san",
+    totalReviews: 457,
+    totalSold: 643,
   ),
   Product(
     id: 6,
@@ -131,9 +131,9 @@ var productList = [
       "https://cdn.kyou.id/items/336384-alya-sometimes-hides-her-feelings-in-russian-acrylic-chara-stand-alya-valentine-ver.jpg.webp",
     ],
     nameCharacter: "Alisa Mikhailovna Kujou",
-    nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alyas-san",
-    totalReviews: 123,
-    totalSold: 213,
+    nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alya-san",
+    totalReviews: 634,
+    totalSold: 643,
   ),
 
   // Kurumi
@@ -153,8 +153,8 @@ var productList = [
     ],
     nameCharacter: "Tokisaki Kurumi",
     nameSeries: "Date A Live",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 111,
+    totalSold: 260,
   ),
   Product(
     id: 8,
@@ -177,8 +177,8 @@ var productList = [
     ],
     nameCharacter: "Tokisaki Kurumi",
     nameSeries: "Date A Live",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 423,
+    totalSold: 245,
   ),
   Product(
     id: 9,
@@ -192,8 +192,8 @@ var productList = [
     ],
     nameCharacter: "Tokisaki Kurumi",
     nameSeries: "Date A Live",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 865,
+    totalSold: 275,
   ),
 
   // ushio noa
@@ -209,8 +209,8 @@ var productList = [
     ],
     nameCharacter: "Ushio Noa",
     nameSeries: "Blue Archive",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 865,
+    totalSold: 745,
   ),
   Product(
     id: 11,
@@ -230,8 +230,8 @@ var productList = [
     ],
     nameCharacter: "Ushio Noa",
     nameSeries: "Blue Archive",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 234,
+    totalSold: 264,
   ),
   Product(
     id: 12,
@@ -245,8 +245,8 @@ var productList = [
     ],
     nameCharacter: "Ushio Noa",
     nameSeries: "Blue Archive",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 151,
+    totalSold: 325,
   ),
 
   // shiroko
@@ -262,8 +262,8 @@ var productList = [
     ],
     nameCharacter: "Sunaookami Shiroko",
     nameSeries: "Blue Archive",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 745,
+    totalSold: 234,
   ),
 
   // sakurako
@@ -279,8 +279,8 @@ var productList = [
     ],
     nameCharacter: "Utazumi Sakurako",
     nameSeries: "Blue Archive",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 126,
+    totalSold: 124,
   ),
 
   // ruan mei
@@ -297,8 +297,8 @@ var productList = [
     ],
     nameCharacter: "Ruan Mei",
     nameSeries: "Honkai Star Rail",
-    totalReviews: 123,
-    totalSold: 213,
+    totalReviews: 574,
+    totalSold: 568,
   ),
 
 ];
