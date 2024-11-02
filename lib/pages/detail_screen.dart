@@ -165,7 +165,7 @@ class _DetailMobileScreenState extends State<DetailMobileScreen> {
                       right: 0,
                       child: DotsIndicator(
                         dotsCount: widget.product.imageUrls.length,
-                        position: _currentPage.toInt(),
+                        position: _currentPage,
                         decorator: DotsDecorator(
                           activeColor: Colors.black.withOpacity(1),
                           color: Colors.black.withOpacity(0),
@@ -529,7 +529,7 @@ class _DetailWebScreenState extends State<DetailWebScreen> {
                                 right: 0,
                                 child: DotsIndicator(
                                   dotsCount: widget.product.imageUrls.length,
-                                  position: _currentPage.toInt(),
+                                  position: _currentPage,
                                   decorator: DotsDecorator(
                                     activeColor: Colors.black.withOpacity(1),
                                     color: Colors.black.withOpacity(0),
