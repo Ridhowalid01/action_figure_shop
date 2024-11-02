@@ -18,6 +18,7 @@ class Dimensions {
   static double height16 = screenHeight / 54.1;
   static double height18 = screenHeight / 48.1;
   static double height20 = screenHeight / 43.3;
+  static double height30 = screenHeight / 28.8;
   static double height80 = screenHeight / 10.8;
   static double height100 = screenHeight / 8.6;
   static double height120 = screenHeight / 7.2;
@@ -33,6 +34,7 @@ class Dimensions {
   static double width16 = screenHeight / 54.1;
   static double width18 = screenHeight / 48.1;
   static double width20 = screenHeight / 43.3;
+  static double width30 = screenHeight / 28.8;
   static double width80 = screenHeight / 10.8;
   static double width100 = screenHeight / 8.6;
   static double width120 = screenHeight / 7.2;
@@ -62,4 +64,7 @@ class Dimensions {
 
   // toolBar
   static double toolbarHeight60 = screenHeight / 14.4;
+
+  // image container
+static double imageContainer400 = screenHeight / 2.1;
 }

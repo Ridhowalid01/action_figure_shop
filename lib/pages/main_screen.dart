@@ -26,7 +26,8 @@ class _MainScreenState extends State<MainScreen> {
           elevation: 0,
           toolbarHeight: Dimensions.toolbarHeight60,
           title: Padding(
-            padding: EdgeInsets.only(top: Dimensions.height20, bottom: Dimensions.height10),
+            padding: EdgeInsets.only(
+                top: Dimensions.height20, bottom: Dimensions.height10),
             child: Text(
               // 'Explore ${MediaQuery.of(context).size.width}',
               "Explore",
@@ -38,9 +39,13 @@ class _MainScreenState extends State<MainScreen> {
           ),
           centerTitle: true,
           actions: [
-            Padding(
-              padding: EdgeInsets.only(top: Dimensions.height16, right: Dimensions.width10, bottom: Dimensions.height8),
-              child: IconButton(
+            if (MediaQuery.of(context).size.width <=600)
+              Padding(
+                padding: EdgeInsets.only(
+                    top: Dimensions.height8,
+                    right: Dimensions.width10,
+                    bottom: Dimensions.height8),
+                child: IconButton(
                   onPressed: () {
                     setState(() {
                       isGridView = !isGridView;
@@ -50,8 +55,10 @@ class _MainScreenState extends State<MainScreen> {
                     isGridView ? Icons.list : Icons.grid_view_outlined,
                     color: Colors.black,
                     size: Dimensions.iconSize32,
-                  )),
-            ),
+                  ),
+                  alignment: Alignment.center,
+                ),
+              )
           ],
         ),
         body: LayoutBuilder(
@@ -87,15 +94,20 @@ class ProductListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10, bottom: Dimensions.height20),
+      padding: EdgeInsets.only(
+          left: Dimensions.width10,
+          right: Dimensions.width10,
+          bottom: Dimensions.height20),
       child: ListView.builder(
           itemCount: productList.length,
           itemBuilder: (context, index) {
             final Product product = productList[index];
             return InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return DetailScreen(product: product,);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return DetailScreen(
+                    product: product,
+                  );
                 }));
               },
               child: Card(
@@ -111,7 +123,8 @@ class ProductListView extends StatelessWidget {
                           child: Hero(
                               tag: "thumbnail-${product.id}",
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(Dimensions.radius10),
+                                borderRadius:
+                                    BorderRadius.circular(Dimensions.radius10),
                                 child: AspectRatio(
                                   aspectRatio: 1,
                                   child: Image.asset(
@@ -127,7 +140,7 @@ class ProductListView extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(Dimensions.height8),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
@@ -135,7 +148,8 @@ class ProductListView extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: Dimensions.font20,
-                                    color: Colors.black),
+                                    color: Colors.black,
+                                    height: 1.2),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                               ),
@@ -145,7 +159,8 @@ class ProductListView extends StatelessWidget {
                               Text(
                                 'IDR ${product.price}',
                                 style: TextStyle(
-                                    fontSize: Dimensions.font18, fontWeight: FontWeight.bold),
+                                    fontSize: Dimensions.font18,
+                                    fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                               ),
@@ -154,7 +169,7 @@ class ProductListView extends StatelessWidget {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   StatusBadge(status: product.status),
                                   Row(
@@ -176,7 +191,8 @@ class ProductListView extends StatelessWidget {
                               )
                             ],
                           ),
-                        ))
+                        ),
+                    )
                   ],
                 ),
               ),
@@ -199,17 +215,20 @@ class ProductGridView extends StatelessWidget {
         crossAxisCount: gridCount,
         crossAxisSpacing: Dimensions.height12,
         mainAxisSpacing: Dimensions.width12,
-        childAspectRatio: 0.65,
+        childAspectRatio: 0.7,
         children: productList.map((product) {
           return InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context){
-                return DetailScreen(product: product,);
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DetailScreen(
+                  product: product,
+                );
               }));
             },
             child: Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                       child: Stack(
@@ -217,7 +236,8 @@ class ProductGridView extends StatelessWidget {
                       Hero(
                           tag: "thumbnail-${product.id}",
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(Dimensions.radius10),
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius10),
                             child: AspectRatio(
                               aspectRatio: 1,
                               child: Image.asset(
@@ -249,7 +269,9 @@ class ProductGridView extends StatelessWidget {
                         Text(
                           product.name,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: Dimensions.font20),
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.font20,
+                              height: 1.2),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                         ),

@@ -1,3 +1,6 @@
+import 'package:lorem_ipsum/lorem_ipsum.dart';
+
+
 class Product {
   int id;
   String name;
@@ -10,6 +13,7 @@ class Product {
   String nameSeries;
   int totalReviews;
   int totalSold;
+  String textDescription;
 
   Product({
     required this.id,
@@ -22,7 +26,8 @@ class Product {
     required this.nameCharacter,
     required this.nameSeries,
     required this.totalReviews,
-    required this.totalSold
+    required this.totalSold,
+    required this.textDescription
 });
 }
 
@@ -45,6 +50,7 @@ var productList = [
     nameSeries: "Majo no Tabitabi",
     totalReviews: 123,
     totalSold: 213,
+    textDescription: loremIpsum(paragraphs: 5, words: 500),
   ),
   Product(
     id:2,
@@ -64,6 +70,7 @@ var productList = [
     nameSeries: "Majo no Tabitabi",
     totalReviews: 123,
     totalSold: 213,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 3,
@@ -84,6 +91,7 @@ var productList = [
     nameSeries: "Majo no Tabitabi",
     totalReviews: 856,
     totalSold: 345,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
   // Alya
@@ -104,6 +112,7 @@ var productList = [
     nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alya-san",
     totalReviews: 256,
     totalSold: 457,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 5,
@@ -119,6 +128,7 @@ var productList = [
     nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alya-san",
     totalReviews: 457,
     totalSold: 643,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 6,
@@ -134,6 +144,7 @@ var productList = [
     nameSeries: "Tokidoki Bosotto Russia-go de Dederu Tonari no Alya-san",
     totalReviews: 634,
     totalSold: 643,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
   // Kurumi
@@ -155,6 +166,7 @@ var productList = [
     nameSeries: "Date A Live",
     totalReviews: 111,
     totalSold: 260,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 8,
@@ -179,6 +191,7 @@ var productList = [
     nameSeries: "Date A Live",
     totalReviews: 423,
     totalSold: 245,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 9,
@@ -194,6 +207,7 @@ var productList = [
     nameSeries: "Date A Live",
     totalReviews: 865,
     totalSold: 275,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
   // ushio noa
@@ -211,6 +225,7 @@ var productList = [
     nameSeries: "Blue Archive",
     totalReviews: 865,
     totalSold: 745,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 11,
@@ -232,6 +247,7 @@ var productList = [
     nameSeries: "Blue Archive",
     totalReviews: 234,
     totalSold: 264,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
   Product(
     id: 12,
@@ -247,6 +263,7 @@ var productList = [
     nameSeries: "Blue Archive",
     totalReviews: 151,
     totalSold: 325,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
   // shiroko
@@ -264,6 +281,7 @@ var productList = [
     nameSeries: "Blue Archive",
     totalReviews: 745,
     totalSold: 234,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
   // sakurako
@@ -281,6 +299,7 @@ var productList = [
     nameSeries: "Blue Archive",
     totalReviews: 126,
     totalSold: 124,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
   // ruan mei
@@ -299,6 +318,7 @@ var productList = [
     nameSeries: "Honkai Star Rail",
     totalReviews: 574,
     totalSold: 568,
+    textDescription: loremIpsum(paragraphs: 2, words: 100),
   ),
 
 ];

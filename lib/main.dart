@@ -1,4 +1,3 @@
-import 'package:action_figure_shop/pages/detail_screen.dart';
 import 'package:action_figure_shop/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
